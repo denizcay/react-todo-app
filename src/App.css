@@ -2,6 +2,10 @@
   margin: 1rem;
 }
 
+.todos-list{
+  padding: 0;
+}
+
 .todos-list > li{
   padding: 0.5rem 0;
   border-bottom: 1px solid gainsboro;
@@ -9,6 +13,15 @@
 
 li.done > span{
   text-decoration: line-through;
+}
+
+li.task-list-item {
+  display: flex;
+}
+
+.btn-delete-task {
+  margin-left: auto;
+  color: red;
 }
 
 
