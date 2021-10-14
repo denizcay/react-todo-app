@@ -13,15 +13,27 @@ export class App extends Component {
     return (
       <div className="App">
         <h1>My Todos</h1>
+        <form onSubmit={(e)=>this.handleSubmit(e)}>
+          <input name="task" type="text" placeholder="Do something..." required/>
+          <button>Add</button>
+        </form>
         <ol className="todos-list">
           {this.state.tasks.map((value, index) => 
-          <li key={index}>
-            {value.task}
+            <li key={index} className={value.isDone ? "done" : "undone"}>
+            <span>{value.task}</span>
             <input type="checkbox" checked={value.isDone} onChange={(e) => this.updateTodoStatus(e, index)} />
           </li>)}
         </ol>
       </div>
     );
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const newTask = {task: e.target.task.value, isDone: false};
+    const tasks = [...this.state.tasks, newTask];
+    this.setState({tasks: tasks});
+    e.target.reset();
   }
 
   updateTodoStatus(e, index){
